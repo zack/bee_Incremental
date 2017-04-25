@@ -7,17 +7,26 @@
 	<body>
 
 	<div class="row-fluid">
-		<div id="resources_bar" class="col-md-4">
+		<div id="resources_bar" class="col-md-2 well">
 				<span id="resources">Resources</span>
 				<br/>
 				Pollen: <span id="pollen">0</span>
 				<br/>
-				Worker Bees: <span id="worker_bees">0</span>
+				Honey: <span id="honey">0</span>
+				<br/>
+				Worker Bees: <span id="workerBees">0</span>
 		</div>
-		<div id="action_bar" class="col-md-8">
+		<div id="action_bar" class="col-md-3 well">
+		<span id="actions">Actions</span>
 			<br/>
 			<button onclick="gatherPollen(1)">
 				Gather Pollen
+			</button>
+			<button onclick="makeHoney(1)">
+				Make honey: 5 pollen
+			</button>
+			<button onclick="spawnBee(1)">
+				Spawn Bee: <span id="workerBeeCost">2</span> honey
 			</button>
 		</div>
 	</div>
