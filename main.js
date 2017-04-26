@@ -31,17 +31,17 @@ function gatherPollen(amount) {
 };
 
 function makeHoney(amount) {
-	if (pollen>=5) {
-		pollen-=5;
-		honey+=1;
+	if (pollen >= 5) {
+		pollen -= 5;
+		honey += 1;
 		updateResourceAmount();
 	}
 }
 
 function spawnBee(amount) {
 	if(honey >= workerBeeCost) {
-		honey-=wokerBeeCost;
-		workerBees+=1;
+		honey -= workerBeeCost;
+		workerBees += 1;
 		workerBeeCost = Math.floor(1.2*(workerBeeCost+1))
 		updateResourceAmount();
 	}

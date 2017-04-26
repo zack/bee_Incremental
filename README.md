@@ -22,3 +22,7 @@ Improvements:
 	4. Rewrite makeHoney function to check for upgrade
 	5. Create a science tab
 	6. Create purchase upgrade button
+3. Create save feature
+	1. create clear save option on page
+		1. make an html div for clear save
+		2. Create a confirmation for clearing save
