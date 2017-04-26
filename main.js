@@ -1,3 +1,13 @@
+/*
+main.js
+
+Notes:
+1.	updateResourceAmount might become clunky as more resources are added.
+	Storing resources in a nested array may be easier;
+	However, this approach may make the code less easy to read.
+*/
+
+// Resources
 var pollen = 0;
 var honey = 0;
 var workerBees = 0;
@@ -10,7 +20,11 @@ function updateResourceAmount() {
 	document.getElementById("workerBeeCost").innerHTML = workerBeeCost;
 }
 
+window.setInterval(function() {
+	gatherPollen(workerBees);
+}, 1000);
 
+// Button Functions
 function gatherPollen(amount) {
 	pollen += amount;
 	updateResourceAmount();
