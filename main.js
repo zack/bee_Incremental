@@ -40,7 +40,7 @@ function makeHoney(amount) {
 
 function spawnBee(amount) {
 	if(honey >= workerBeeCost) {
-		honey-=2;
+		honey-=wokerBeeCost;
 		workerBees+=1;
 		workerBeeCost = Math.floor(1.2*(workerBeeCost+1))
 		updateResourceAmount();
