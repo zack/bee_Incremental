@@ -1,5 +1,13 @@
 # bee_Incremental
 Minimal incremental game for learning purposes.
+Inspired by kittens game: http://www.bloodrizer.ru/games/kittens/
+
+Resources Used:
+http://reddit.com/r/incremental_games
+http://dhmholley.co.uk/incrementals.html
+
+Thanks to:
+github.com/Zack
 
 Minimum Viable Product:
 1. button to increment pollen

@@ -12,6 +12,19 @@ var pollen = 0;
 var honey = 0;
 var workerBees = 0;
 var workerBeeCost = 2;
+var time = 0;
+
+// Time tracker
+window.setInterval(function() {
+	time +=.5;
+	day = Math.floor(time % 40)
+	year = Math.floor(time / 40)
+	document.getElementById("year").innerHTML = year;
+	document.getElementById("day").innerHTML = day;
+
+	gatherPollen(workerBees);
+
+}, 1000);
 
 function updateResourceAmount() {
 	document.getElementById("pollen").innerHTML = pollen;
@@ -20,9 +33,6 @@ function updateResourceAmount() {
 	document.getElementById("workerBeeCost").innerHTML = workerBeeCost;
 }
 
-window.setInterval(function() {
-	gatherPollen(workerBees);
-}, 1000);
 
 // Button Functions
 function gatherPollen(amount) {
