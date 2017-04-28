@@ -30,7 +30,10 @@ Hi Zack
 				Honey: <span id="honey">0</span>
 				<br/>
 				Worker Bees: <span id="workerBees">0</span>
+				<br/>
+				Science Honey: <span id="scienceHoney">0</span>
 		</div>
+
 		<div id="action_bar" class="col-md-3 well">
 		<span id="actions">Actions</span>
 			<br/>
@@ -43,6 +46,19 @@ Hi Zack
 			<button onclick="spawnBee(1)">
 				Spawn Bee: <span id="workerBeeCost">2</span> honey
 			</button>
+			<button onclick="makeScienceHoney(1)">
+				Make Science: 10 honey
+			</button>
+		</div>
+
+		<div id="science_bar">
+			<span id="science">Science</span>
+			</br>
+			<div id="improveFlight">
+				<button onclick="unlockImprovedFlight()">
+					Unlock Improved Flight: 5 Science Honey
+				</button>
+		</div>
 		</div>
 	</div>
 

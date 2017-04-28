@@ -8,21 +8,31 @@ Notes:
 */
 
 // Resources
-var pollen = 0;
-var honey = 0;
+var pollen = 100;
+var honey = 100;
 var workerBees = 0;
 var workerBeeCost = 2;
+var scienceHoney = 100;
 var time = 0;
+
+// upgrades
+var upgrades = {
+	"workerBeesHoney": {
+		"multiplier": 1,
+		"improvedFlightUnlocked": false,
+		"improvedFlightValue": 3,
+	}
+};
 
 // Time tracker
 window.setInterval(function() {
 	time +=.5;
-	day = Math.floor(time % 40)
-	year = Math.floor(time / 40)
+	day = Math.floor(time % 200)+1
+	year = Math.floor(time / 200)
 	document.getElementById("year").innerHTML = year;
 	document.getElementById("day").innerHTML = day;
 
-	gatherPollen(workerBees);
+	gatherPollen(workerBees*upgrades.workerBeesHoney.multiplier);
 
 }, 1000);
 
@@ -31,6 +41,7 @@ function updateResourceAmount() {
 	document.getElementById("honey").innerHTML = honey;
 	document.getElementById("workerBees").innerHTML = workerBees;
 	document.getElementById("workerBeeCost").innerHTML = workerBeeCost;
+	document.getElementById("scienceHoney").innerHTML = scienceHoney;
 }
 
 
@@ -55,4 +66,17 @@ function spawnBee(amount) {
 		workerBeeCost = Math.floor(1.2*(workerBeeCost+1))
 		updateResourceAmount();
 	}
+}
+
+function makeScienceHoney(amount) {
+	if(honey >= amount * 10) {
+		honey -= amount * 10;
+		scienceHoney += amount;
+		updateResourceAmount();
+	}
+}
+
+
+function unlockImprovedFlight() {
+
 }
