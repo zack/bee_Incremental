@@ -21,6 +21,9 @@ var game = {
 		"workerBeesCost": 2,
 	},
 	time: 0,
+	unlocks: {
+		"improvedFlight":	false,
+	},
 }
 
 // Game state updater
@@ -33,7 +36,11 @@ window.setInterval(function() {
 	document.getElementById("day").innerHTML = day;
 
 	//gatherer update
-	gatherPollen(game.gatherers.workerBees);
+	var workerBeesAmount = game.gatherers.workerBees;
+	if (game.unlocks["improvedFlight"]) {
+		workerBeesAmount *=2;
+	}
+	gatherPollen(workerBeesAmount);
 	updateHTML();
 
 }, 1000);
@@ -87,6 +94,14 @@ function makeScienceHoney(amount) {
 	if(game.resources.honey >= amount * 10) {
 		game.resources.honey -= amount * 10;
 		game.resources.scienceHoney += amount;
+		updateHTML();
+	}
+}
+
+function unlockImprovedFlight() {
+	if(game.resources.scienceHoney >= 5 && !game.unlocks["improvedFlight"]) {
+		game.unlocks["improvedFlight"] = true;
+		game.resources.scienceHoney -= 5;
 		updateHTML();
 	}
 }
