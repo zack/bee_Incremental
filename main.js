@@ -102,6 +102,7 @@ function unlockImprovedFlight() {
 	if(game.resources.scienceHoney >= 5 && !game.unlocks["improvedFlight"]) {
 		game.unlocks["improvedFlight"] = true;
 		game.resources.scienceHoney -= 5;
+		document.getElementById("improvedFlight").remove();
 		updateHTML();
 	}
 }
