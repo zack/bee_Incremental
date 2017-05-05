@@ -35,3 +35,8 @@ Improvements:
   2. Create save function in main.js
 	3. Create clear save option on page
 		* Create a confirmation for clearing save
+
+Bugs/reformating:
+1. upgrade buttons do not return if upgrades are no longer unlocked
+2. rewrite updateHTML function to remove "continue;"
+3. possibly break up updateHTML() function

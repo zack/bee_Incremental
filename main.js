@@ -71,11 +71,32 @@ function updateHTML() {
 // Serializes game state into text.
 var openSaveMenu = function() {
 	document.getElementById("save").removeAttribute("hidden");
-}
+};
 
 var closeSaveMenu = function() {
 	document.getElementById("save").setAttribute("hidden", true);
-}
+};
+
+var localSave = function() {
+	localStorage.setItem("beeIncrementalSave", JSON.stringify(game));
+};
+
+var localLoad = function() {
+	var load = JSON.parse(localStorage.getItem("beeIncrementalSave"));
+	if (load) {
+		game = load;
+		updateHTML();
+	}
+};
+
+var deleteSave = function(){
+	confirmed = confirm(
+		"Are you sure you want to kill all these poor poor bees, you monster?"
+	);
+	if (confirmed) {
+		localStorage.removeItem("beeIncrementalSave");
+	}
+};
 
 var exportSave = function() {
 	document.getElementById("importExport").value = JSON.stringify(game);

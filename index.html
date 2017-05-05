@@ -17,7 +17,7 @@ Hi Zack
 		<div class="row">
 			<div class="col-md-2">Bee Incremental by Matt</div>
 			<div class="col-md-2">
-				<button id="openSaveMenu" onclick="openSaveMenu()">Save</button>
+				<button id="openSaveMenu" onclick="openSaveMenu()">Save Menu</button>
 			</div>
 		</div>
 		<div id="time">
@@ -29,9 +29,12 @@ Hi Zack
 		<span id="">Save Import/Export</span>
 		<br/>
 		<textarea id=importExport></textarea>
+		<button onclick="localSave()">Local Save</button>
+		<button onclick="localLoad()">Local Load</button>
+		<button onclick="deleteSave()">Delete Save</button>
 		<button onclick="exportSave()">Export Save</button>
 		<button onclick="importSave()">Import Save</button>
-		<button onclick="closeSaveMenu()">Close</button>
+		<button onclick="closeSaveMenu()">Close Save Menu</button>
 	</div>
 
 	<div class="row-fluid">
