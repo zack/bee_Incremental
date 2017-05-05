@@ -14,11 +14,24 @@ Hi Zack
 	<body>
 
 	<div id="navbar">
-		<span id="title">Bee Incremental </span> by
-		<span id="author">Matt </span>
+		<div class="row">
+			<div class="col-md-2">Bee Incremental by Matt</div>
+			<div class="col-md-2">
+				<button id="openSaveMenu" onclick="openSaveMenu()">Save</button>
+			</div>
+		</div>
 		<div id="time">
 			Year: <span id="year">0</span> Day: <span id="day">0</span>
 		</div>
+	</div>
+
+	<div hidden id="save" class="well">
+		<span id="">Save Import/Export</span>
+		<br/>
+		<textarea id=importExport></textarea>
+		<button onclick="exportSave()">Export Save</button>
+		<button onclick="importSave()">Import Save</button>
+		<button onclick="closeSaveMenu()">Close</button>
 	</div>
 
 	<div class="row-fluid">

@@ -45,6 +45,7 @@ window.setInterval(function() {
 
 }, 1000);
 
+// updateHTML() adjusts the html to reflect the game state.
 function updateHTML() {
 	for (var resource in game.resources) {
     if (!game.resources.hasOwnProperty(resource)) {
@@ -66,6 +67,25 @@ function updateHTML() {
 	}
 }
 
+// Save feature
+// Serializes game state into text.
+var openSaveMenu = function() {
+	document.getElementById("save").removeAttribute("hidden");
+}
+
+var closeSaveMenu = function() {
+	document.getElementById("save").setAttribute("hidden", true);
+}
+
+var exportSave = function() {
+	document.getElementById("importExport").value = JSON.stringify(game);
+}
+// Load feature
+var importSave = function() {
+	savestring = document.getElementById("importExport").value;
+	game = JSON.parse(savestring);
+	updateHTML();
+};
 
 // Button Functions
 function gatherPollen(amount) {
