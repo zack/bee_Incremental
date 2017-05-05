@@ -48,10 +48,10 @@ window.setInterval(function() {
 // updateHTML() adjusts the html to reflect the game state.
 function updateHTML() {
 	for (var resource in game.resources) {
-    if (!game.resources.hasOwnProperty(resource)) {
-        continue;
-    }
-    document.getElementById(resource).innerHTML = game.resources[resource];
+		if (!game.resources.hasOwnProperty(resource)) {
+			continue;
+		}
+		document.getElementById(resource).innerHTML = game.resources[resource];
 	}
 	for (var gatherer in game.gatherers) {
 		if(!game.gatherers.hasOwnProperty(gatherer)) {
