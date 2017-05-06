@@ -69,12 +69,13 @@ function updateHTML() {
 
 // Save feature
 // Serializes game state into text.
-var openSaveMenu = function() {
-	document.getElementById("save").removeAttribute("hidden");
-};
-
-var closeSaveMenu = function() {
-	document.getElementById("save").setAttribute("hidden", true);
+var toggleSaveMenu= function() {
+	var saveDiv = document.getElementById("save");
+	if (saveDiv.hasAttribute("hidden")) {
+		saveDiv.removeAttribute("hidden");
+	} else {
+		saveDiv.setAttribute("hidden",true);
+	}
 };
 
 var localSave = function() {
