@@ -47,21 +47,37 @@ window.setInterval(function() {
 
 // updateHTML() adjusts the html to reflect the game state.
 function updateHTML() {
+	updateResourcesHTML();
+	updateGatherersHTML();
+	updateCostsHTML();
+	updateUnlocksHTML();
+};
+
+function updateResourcesHTML() {
 	for (var resource in game.resources) {
 		if (game.resources.hasOwnProperty(resource)) {
 			document.getElementById(resource).innerHTML = game.resources[resource];
 		}
 	}
+};
+
+function updateGatherersHTML() {
 	for (var gatherer in game.gatherers) {
 		if(game.gatherers.hasOwnProperty(gatherer)) {
 			document.getElementById(gatherer).innerHTML = game.gatherers[gatherer];
 		}
 	}
+};
+
+function updateCostsHTML() {
 	for (var cost in game.costs) {
 		if(game.costs.hasOwnProperty(cost)) {
 			document.getElementById(cost).innerHTML = game.costs[cost];
 		}
 	}
+};
+
+function updateUnlocksHTML() {
 	for (var unlock in game.unlocks) {
 		if(game.unlocks[unlock]) {
 			document.getElementById(unlock).setAttribute("hidden",true);
@@ -69,7 +85,7 @@ function updateHTML() {
 			document.getElementById(unlock).removeAttribute("hidden");
 		}
 	}
-}
+};
 
 // Save feature
 // Serializes game state into text.
