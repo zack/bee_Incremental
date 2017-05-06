@@ -48,22 +48,26 @@ window.setInterval(function() {
 // updateHTML() adjusts the html to reflect the game state.
 function updateHTML() {
 	for (var resource in game.resources) {
-		if (!game.resources.hasOwnProperty(resource)) {
-			continue;
+		if (game.resources.hasOwnProperty(resource)) {
+			document.getElementById(resource).innerHTML = game.resources[resource];
 		}
-		document.getElementById(resource).innerHTML = game.resources[resource];
 	}
 	for (var gatherer in game.gatherers) {
-		if(!game.gatherers.hasOwnProperty(gatherer)) {
-			continue;
+		if(game.gatherers.hasOwnProperty(gatherer)) {
+			document.getElementById(gatherer).innerHTML = game.gatherers[gatherer];
 		}
-		document.getElementById(gatherer).innerHTML = game.gatherers[gatherer];
 	}
 	for (var cost in game.costs) {
-		if(!game.costs.hasOwnProperty(cost)) {
-			continue;
+		if(game.costs.hasOwnProperty(cost)) {
+			document.getElementById(cost).innerHTML = game.costs[cost];
 		}
-		document.getElementById(cost).innerHTML = game.costs[cost];
+	}
+	for (var unlock in game.unlocks) {
+		if(game.unlocks[unlock]) {
+			document.getElementById(unlock).setAttribute("hidden",true);
+		} else {
+			document.getElementById(unlock).removeAttribute("hidden");
+		}
 	}
 }
 
@@ -144,7 +148,6 @@ function unlockImprovedFlight() {
 	if(game.resources.scienceHoney >= 5 && !game.unlocks["improvedFlight"]) {
 		game.unlocks["improvedFlight"] = true;
 		game.resources.scienceHoney -= 5;
-		document.getElementById("improvedFlight").remove();
 		updateHTML();
 	}
 }
