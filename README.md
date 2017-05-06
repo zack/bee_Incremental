@@ -40,3 +40,19 @@ Bugs/reformating:
 1. upgrade buttons do not return if upgrades are no longer unlocked
 2. rewrite updateHTML function to remove "continue;"
 3. possibly break up updateHTML() function
+
+Improvements II
+1. Create wax resource
+  1. Add wax resource to var game
+  2. Create refine wax button
+  3. Add wax gathering to workerBees
+2. Create maximum amount of workerBees
+  1. Create an object for structures in var game
+  2. Create an honeycomb property in game.structures.
+  3. Add relevant HTML for structures and honecomb
+  4. Create a make honeycomb button
+  5. Set increasing cost to make honeycomb
+  6. Create a "maxWorkerBees" variable
+  7. Create a calculate maxWorkerBees function
+  8. Create HTML for maxWorkerBees
+  9. modify spawnWorkerBee function to include conditional for <= maxWorkerBees
