@@ -13,6 +13,7 @@ var game = {
 		"pollen": 			100,
 		"honey":				100,
 		"scienceHoney":	100,
+		"wax":					100,
 	},
 	gatherers: {
 		"workerBees":		1,
@@ -41,6 +42,7 @@ window.setInterval(function() {
 		workerBeesAmount *=2;
 	}
 	gatherPollen(workerBeesAmount);
+	refineWax(workerBeesAmount/20);
 	updateHTML();
 
 }, 1000);
@@ -136,9 +138,17 @@ function gatherPollen(amount) {
 };
 
 function makeHoney(amount) {
-	if (game.resources.pollen >= 5) {
-		game.resources.pollen -= 5;
-		game.resources.honey += 1;
+	if (game.resources.pollen >= 5*amount) {
+		game.resources.pollen -= 5*amount;
+		game.resources.honey += amount;
+		updateHTML();
+	}
+}
+
+function refineWax(amount) {
+	if(game.resources.pollen >= 10*amount) {
+		game.resources.pollen -= 10*amount;
+		game.resources.wax += amount;
 		updateHTML();
 	}
 }
