@@ -25,6 +25,9 @@ var game = {
 	unlocks: {
 		"improvedFlight":	false,
 	},
+	structures: {
+		"honeycomb": 0,
+	},
 }
 
 // Game state updater
