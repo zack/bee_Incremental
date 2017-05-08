@@ -165,12 +165,14 @@ var importSave = function() {
 
 // Button Functions
 function gatherPollen(amount) {
-	game.resources.pollen += amount;
-	updateHTML();
+	if(game.maxValues.maxPollen > amount + game.resources.pollen) {
+		game.resources.pollen += amount;
+		updateHTML();
+	}
 };
 
 function makeHoney(amount) {
-	if (game.resources.pollen >= 5*amount) {
+	if (game.resources.pollen >= 5*amount && game.maxValues.maxHoney > game.resources.honey) {
 		game.resources.pollen -= 5*amount;
 		game.resources.honey += amount;
 		updateHTML();
@@ -178,7 +180,7 @@ function makeHoney(amount) {
 }
 
 function refineWax(amount) {
-	if(game.resources.pollen >= 10*amount) {
+	if(game.resources.pollen >= 10*amount && game.maxValues.maxWax > amount + game.resources.wax) {
 		game.resources.pollen -= 10*amount;
 		game.resources.wax += amount;
 		updateHTML();
@@ -195,7 +197,7 @@ function spawnBee() {
 }
 
 function makeScienceHoney(amount) {
-	if(game.resources.honey >= amount * 10) {
+	if(game.resources.honey >= amount * 10 && game.maxValues.maxScienceHoney > game.resources.scienceHoney) {
 		game.resources.honey -= amount * 10;
 		game.resources.scienceHoney += amount;
 		updateHTML();
