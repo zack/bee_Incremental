@@ -40,18 +40,25 @@ Hi Zack
 		<div id="resources_bar" class="col-md-3 well">
 				<span id="resources">Resources</span>
 				<br/>
-				Pollen: <span id="pollen">0</span>
+				Pollen:
+				<span id="pollen">0</span>/<span id="maxPollen">1000</span>
 				<br/>
-				Honey: <span id="honey">0</span>
+				Honey:
+				<span id="honey">0</span>/<span id="maxHoney">1000</span>
 				<br/>
-				Science Honey: <span id="scienceHoney">0</span>
+				Science Honey:
+				<span id="scienceHoney">0</span>/<span id="maxScienceHoney">1000</span>
 				<br/>
-				Wax: <span id="wax">0</span>
+				Wax:
+				<span id="wax">0</span>/<span id="maxWax">1000</span>
 				<br/>
+
 				<span id="gatherers">Gatherers</span>
 				<br/>
-				Worker Bees: <span id="workerBees">0</span>
+				Worker Bees:
+				<span id="workerBees">0</span>/<span id="maxWorkerBees">3</span>
 				<br/>
+
 				<span id="structures">Structures</span>
 				<br/>
 				Honeycomb: <span id="honeycomb">0</span>
@@ -69,7 +76,7 @@ Hi Zack
 				Make honey: 5 pollen
 			</button>
 			<br/>
-			<button onclick="spawnBee(1)">
+			<button onclick="spawnBee()">
 				Spawn Bee: <span id="workerBeesCost">2</span> honey
 			</button>
 			<br/>
@@ -79,6 +86,10 @@ Hi Zack
 			<br/>
 			<button onclick="refineWax(1)">
 				Refine Wax: 10 pollen
+			</button>
+			<br/>
+			<button onclick="constructHoneycomb()">
+				Construct honeycomb: <span id="honeycombCost">10</span> wax
 			</button>
 		</div>
 

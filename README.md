@@ -49,7 +49,7 @@ Improvements II
 2. Create maximum amount of workerBees
     1. Create an object for structures in var game
     2. Create an honeycomb property in game.structures.
-    3. Add relevant HTML for structures and honecomb
+    3. Add relevant HTML for structures and honeycomb
     4. Create a make honeycomb button
     5. Set increasing cost to make honeycomb
     6. Create a "maxWorkerBees" variable

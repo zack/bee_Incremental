@@ -10,23 +10,33 @@ Notes:
 //Everything that is saved is stored here
 var game = {
 	resources: {
-		"pollen": 			100,
-		"honey":				100,
-		"scienceHoney":	100,
-		"wax":					100,
+		"pollen": 				100,
+		"honey":					100,
+		"scienceHoney":		100,
+		"wax":						100,
 	},
 	gatherers: {
-		"workerBees":		1,
+		"workerBees":			1,
 	},
 	costs: {
 		"workerBeesCost": 2,
+		"honeycombCost":	8,
 	},
-	time: 0,
+	time: 							0,
 	unlocks: {
 		"improvedFlight":	false,
 	},
 	structures: {
-		"honeycomb": 0,
+		"honeycomb": 			3,
+
+	},
+	// maximum values for resources and gatherers
+	maxValues: {
+		"maxPollen":				1000,
+		"maxHoney":					1000,
+		"maxScienceHoney":	1000,
+		"maxWax":						1000,
+		"maxWorkerBees":		3,
 	},
 }
 
@@ -56,6 +66,8 @@ function updateHTML() {
 	updateGatherersHTML();
 	updateCostsHTML();
 	updateUnlocksHTML();
+	updateStructuresHTML();
+	updateMaxValuesHTML();
 };
 
 function updateResourcesHTML() {
@@ -88,6 +100,22 @@ function updateUnlocksHTML() {
 			document.getElementById(unlock).setAttribute("hidden",true);
 		} else {
 			document.getElementById(unlock).removeAttribute("hidden");
+		}
+	}
+};
+
+function updateStructuresHTML() {
+	for (var structure in game.structures) {
+		if(game.structures.hasOwnProperty(structure)) {
+			document.getElementById(structure).innerHTML = game.structures[structure];
+		}
+	}
+};
+
+function updateMaxValuesHTML() {
+	for (var value in game.maxValues) {
+		if(game.maxValues.hasOwnProperty(value)) {
+			document.getElementById(value).innerHTML = game.maxValues[value];
 		}
 	}
 };
@@ -134,6 +162,7 @@ var importSave = function() {
 	updateHTML();
 };
 
+
 // Button Functions
 function gatherPollen(amount) {
 	game.resources.pollen += amount;
@@ -156,8 +185,8 @@ function refineWax(amount) {
 	}
 }
 
-function spawnBee(amount) {
-	if(game.resources.honey >= game.costs.workerBeesCost) {
+function spawnBee() {
+	if(game.resources.honey >= game.costs.workerBeesCost && game.maxValues.maxWorkerBees > game.gatherers.workerBees) {
 		game.resources.honey -= game.costs.workerBeesCost;
 		game.gatherers.workerBees += 1;
 		game.costs.workerBeesCost = Math.floor(1.2*(game.costs.workerBeesCost+1))
@@ -177,6 +206,17 @@ function unlockImprovedFlight() {
 	if(game.resources.scienceHoney >= 5 && !game.unlocks["improvedFlight"]) {
 		game.unlocks["improvedFlight"] = true;
 		game.resources.scienceHoney -= 5;
+		updateHTML();
+	}
+}
+
+// This shouldn't be used for buying more than 1
+function constructHoneycomb() {
+	if(game.resources.wax >= game.costs.honeycombCost) {
+		game.resources.wax -= game.costs.honeycombCost;
+		game.structures.honeycomb += 1;
+		game.costs.honeycombCost = Math.floor(1.3*(game.costs.honeycombCost+1))
+		game.maxValues.maxWorkerBees += 1;
 		updateHTML();
 	}
 }
