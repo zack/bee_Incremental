@@ -22,11 +22,10 @@ Notes / Ideas:
 6. Add "game saved" message after saving locally.
     1. message fades after n seconds
 7. Fix button/gatherer functions to permit more than 1 gathering per call.
-		1. Consider recursion
+    1. Consider recursion
 8. Add flavor text to resources / gatherers / buttons / everything
 
-Game direction:
 The enjoyment of this game ought to be:
-    1. Discovering new resources / structures
-    2. Planning to unlock new resources / structures
-    3. Hive growth
+1. Discovering new resources / structures
+2. Planning to unlock new resources / structures
+3. Hive growth
