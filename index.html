@@ -1,23 +1,20 @@
 <!--
 Bee incremental
 Written by Matt
-
-Hi Zack
 -->
 
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 
 	<body>
-
 	<div id="navbar">
 		<div class="row">
 			<div class="col-md-2">Bee Incremental by Matt</div>
 			<div class="col-md-2">
-				<button id="openSaveMenu" onclick="toggleSaveMenu()">Save Menu</button>
+				<button id="saveButton" onclick="toggleSaveMenu()">Save Menu</button>
 			</div>
 		</div>
 		<div id="time">
@@ -37,7 +34,7 @@ Hi Zack
 	</div>
 
 	<div class="row-fluid">
-		<div id="resources_bar" class="col-md-3 well">
+		<div id="resources_bar" class="col-md-3 col-sm-4 well">
 				<span id="resources">Resources</span>
 				<br/>
 				Pollen:
@@ -65,7 +62,7 @@ Hi Zack
 				<br/>
 		</div>
 
-		<div id="action_bar" class="col-md-3 well">
+		<div id="action_bar" class="col-md-3 col-sm-4 well">
 		<span id="actions">Actions</span>
 			<br/>
 			<button onclick="gatherPollen(1)">
@@ -93,7 +90,7 @@ Hi Zack
 			</button>
 		</div>
 
-		<div id="science_bar" class="col-md-3 well">
+		<div id="science_bar" class="col-md-3 col-sm-4 well">
 			<span id="science">Science</span>
 			</br>
 			<div id="improvedFlight">

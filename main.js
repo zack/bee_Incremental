@@ -1,10 +1,5 @@
 /*
 main.js
-
-Notes:
-1.	updateResourceAmount might become clunky as more resources are added.
-	Storing resources in a nested array may be easier;
-	However, this approach may make the code less easy to read.
 */
 
 //Everything that is saved is stored here
@@ -43,7 +38,7 @@ var game = {
 // Game state updater
 window.setInterval(function() {
 	//time
-	game.time +=.5;
+	game.time +=.25;
 	day = Math.floor(game.time % 200)+1
 	year = Math.floor(game.time / 200)
 	document.getElementById("year").innerHTML = year;
@@ -58,7 +53,7 @@ window.setInterval(function() {
 	refineWax(workerBeesAmount/20);
 	updateHTML();
 
-}, 1000);
+}, 500);
 
 // updateHTML() adjusts the html to reflect the game state.
 function updateHTML() {
@@ -121,7 +116,6 @@ function updateMaxValuesHTML() {
 };
 
 // Save feature
-// Serializes game state into text.
 var toggleSaveMenu= function() {
 	var saveDiv = document.getElementById("save");
 	if (saveDiv.hasAttribute("hidden")) {
@@ -155,13 +149,12 @@ var deleteSave = function(){
 var exportSave = function() {
 	document.getElementById("importExport").value = JSON.stringify(game);
 }
-// Load feature
+
 var importSave = function() {
 	savestring = document.getElementById("importExport").value;
 	game = JSON.parse(savestring);
 	updateHTML();
 };
-
 
 // Button Functions
 function gatherPollen(amount) {
@@ -212,7 +205,6 @@ function unlockImprovedFlight() {
 	}
 }
 
-// This shouldn't be used for buying more than 1
 function constructHoneycomb() {
 	if(game.resources.wax >= game.costs.honeycombCost) {
 		game.resources.wax -= game.costs.honeycombCost;
