@@ -14,6 +14,7 @@ var game = {
 		"totalBees":			0,
 		"freeBees":				0,
 		"workerBees":			0,
+		"scientistBees":	0,
 	},
 	costs: {
 		"beesCost": 2,
@@ -47,12 +48,14 @@ window.setInterval(function() {
 	document.getElementById("day").innerHTML = day;
 
 	//gatherer update
-	var workerBeesAmount = game.gatherers.workerBees;
+	var workerBeesRate = game.gatherers.workerBees;
 	if (game.unlocks["improvedFlight"]) {
-		workerBeesAmount *=2;
+		workerBeesRate *= 2;
 	}
-	gatherPollen(workerBeesAmount);
-	refineWax(workerBeesAmount/20);
+	gatherPollen(workerBeesRate);
+	refineWax(workerBeesRate/20);
+	var scienceBeesRate = game.gatherers.scientistBees;
+	game.resources.scienceHoney += scienceBeesRate;
 	updateHTML();
 
 }, 500);
@@ -73,9 +76,11 @@ function calculateValues() {
 	game.costs.beesCost = Math.floor(2+Math.pow(1.5,game.maxValues.maxBees))
 	game.costs.honeycombCost =
 		Math.floor(2+Math.pow(1.3,game.structures.honeycomb))
+/*
 	game.gatherers.totalBees =
 		game.gatherers.freeBees +
 		game.gatherers.workerBees;
+*/
 };
 
 function updateResourcesHTML() {

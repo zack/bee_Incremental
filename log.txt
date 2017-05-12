@@ -64,3 +64,8 @@ Reach a playable state
     3. Change spawnBee function to increment freeBees
     4. Create +/- buttons next to workerBees in html
     5. Add javascript function to assign bees to role
+2. Create Science bees
+    1. Create HTML <div>
+    2. add scienceBees to javascript var game
+    3. add scienceBees to game state updater
+    4. Create +/- buttons next to scienceBees
