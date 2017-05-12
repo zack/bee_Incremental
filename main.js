@@ -11,10 +11,12 @@ var game = {
 		"wax":						100,
 	},
 	gatherers: {
-		"workerBees":			1,
+		"totalBees":			0,
+		"freeBees":				0,
+		"workerBees":			0,
 	},
 	costs: {
-		"workerBeesCost": 2,
+		"beesCost": 2,
 		"honeycombCost":	8,
 	},
 	time: 							0,
@@ -27,11 +29,11 @@ var game = {
 	},
 	// maximum values for resources and gatherers
 	maxValues: {
+		"maxBees":					3,
 		"maxPollen":				1000,
 		"maxHoney":					1000,
 		"maxScienceHoney":	1000,
 		"maxWax":						1000,
-		"maxWorkerBees":		3,
 	},
 }
 
@@ -57,6 +59,7 @@ window.setInterval(function() {
 
 // updateHTML() adjusts the html to reflect the game state.
 function updateHTML() {
+	calculateValues();
 	updateResourcesHTML();
 	updateGatherersHTML();
 	updateCostsHTML();
@@ -65,9 +68,19 @@ function updateHTML() {
 	updateMaxValuesHTML();
 };
 
+function calculateValues() {
+	game.maxValues.maxBees = game.structures.honeycomb;
+	game.costs.beesCost = Math.floor(2+Math.pow(1.5,game.maxValues.maxBees))
+	game.costs.honeycombCost =
+		Math.floor(2+Math.pow(1.3,game.structures.honeycomb))
+	game.gatherers.totalBees =
+		game.gatherers.freeBees +
+		game.gatherers.workerBees;
+};
+
 function updateResourcesHTML() {
 	for (var resource in game.resources) {
-		if (game.resources.hasOwnProperty(resource)) {
+		if(game.resources.hasOwnProperty(resource)) {
 			document.getElementById(resource).innerHTML = game.resources[resource];
 		}
 	}
@@ -75,16 +88,21 @@ function updateResourcesHTML() {
 
 function updateGatherersHTML() {
 	for (var gatherer in game.gatherers) {
-		if(game.gatherers.hasOwnProperty(gatherer)) {
-			document.getElementById(gatherer).innerHTML = game.gatherers[gatherer];
+		if (game.gatherers.hasOwnProperty(gatherer)) {
+			try {
+				document.getElementById(gatherer).innerHTML = game.gatherers[gatherer];
+			}
+			catch (e) {
+				console.log("ERROR: " + gatherer + " was not updated");
+			}
 		}
 	}
 };
 
 function updateCostsHTML() {
 	for (var cost in game.costs) {
-		if(game.costs.hasOwnProperty(cost)) {
-			document.getElementById(cost).innerHTML = game.costs[cost];
+		if (game.costs.hasOwnProperty(cost)) {
+				document.getElementById(cost).innerHTML = game.costs[cost];
 		}
 	}
 };
@@ -156,6 +174,7 @@ var importSave = function() {
 	updateHTML();
 };
 
+
 // Button Functions
 function gatherPollen(amount) {
 	if(game.maxValues.maxPollen > amount + game.resources.pollen) {
@@ -181,11 +200,26 @@ function refineWax(amount) {
 }
 
 function spawnBee() {
-	if(game.resources.honey >= game.costs.workerBeesCost && game.maxValues.maxWorkerBees > game.gatherers.workerBees) {
-		game.resources.honey -= game.costs.workerBeesCost;
-		game.gatherers.workerBees += 1;
-		game.costs.workerBeesCost = Math.floor(1.2*(game.costs.workerBeesCost+1))
+	if(game.resources.honey >= game.costs.beesCost && game.maxValues.maxBees > game.gatherers.totalBees) {
+		game.resources.honey -= game.costs.beesCost;
+		game.gatherers.totalBees += 1;
+		game.gatherers.freeBees += 1;
+		game.gatherers.maxBees += 1;
 		updateHTML();
+	}
+}
+
+function removeBees(beeType) {
+	if(game.gatherers[beeType] > 0) {
+		game.gatherers[beeType] -= 1;
+		game.gatherers.freeBees += 1;
+	}
+}
+
+function addBees(beeType) {
+	if(game.gatherers.freeBees > 0) {
+		game.gatherers.freeBees -= 1;
+		game.gatherers[beeType] += 1;
 	}
 }
 
@@ -209,8 +243,6 @@ function constructHoneycomb() {
 	if(game.resources.wax >= game.costs.honeycombCost) {
 		game.resources.wax -= game.costs.honeycombCost;
 		game.structures.honeycomb += 1;
-		game.costs.honeycombCost = Math.floor(1.3*(game.costs.honeycombCost+1))
-		game.maxValues.maxWorkerBees += 1;
 		updateHTML();
 	}
 }

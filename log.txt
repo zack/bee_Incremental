@@ -56,3 +56,11 @@ Improvements II
     7. Create a calculate maxWorkerBees function
     8. Create HTML for maxWorkerBees
     9. modify spawnWorkerBee function to include conditional for <= maxWorkerBees
+
+Reach a playable state
+1. Create Free Bees
+    1. Create HTML <div>
+    2. Add freeBees to javascript var game
+    3. Change spawnBee function to increment freeBees
+    4. Create +/- buttons next to workerBees in html
+    5. Add javascript function to assign bees to role

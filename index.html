@@ -52,8 +52,16 @@ Written by Matt
 
 				<span id="gatherers">Gatherers</span>
 				<br/>
+				Total Bees:
+				<span id="totalBees">0</span>/<span id="maxBees">0</span>
+				<br/>
+				Free Bees:
+				<span id="freeBees">0</span>
+				<br/>
 				Worker Bees:
-				<span id="workerBees">0</span>/<span id="maxWorkerBees">3</span>
+				<span id="workerBees">0</span>
+				<button onclick="removeBees('workerBees')">-1</button>
+				<button onclick="addBees('workerBees')">+1</button>
 				<br/>
 
 				<span id="structures">Structures</span>
@@ -74,7 +82,7 @@ Written by Matt
 			</button>
 			<br/>
 			<button onclick="spawnBee()">
-				Spawn Bee: <span id="workerBeesCost">2</span> honey
+				Spawn Bee: <span id="beesCost">2</span> honey
 			</button>
 			<br/>
 			<button onclick="makeScienceHoney(1)">
