@@ -6,10 +6,10 @@ main.js
 var game = {
 	time: 												0,
 	resources: {
-		"pollen": 									100,
-		"honey":										100,
+		"pollen": 									0,
+		"honey":										0,
 		"scienceHoney":							0,
-		"wax":											100,
+		"wax":											0,
 	},
 	gatherers: {
 		"totalBees":								0,
