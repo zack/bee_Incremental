@@ -4,17 +4,7 @@
 	background-color: #D0D0D0;
 }
 
-#resources {
-	font-size: 20px;
-	font-weight: bold;
-}
-
-#gatherers {
-	font-size: 20px;
-	font-weight: bold;
-}
-
-#science {
+.title {
 	font-size: 20px;
 	font-weight: bold;
 }

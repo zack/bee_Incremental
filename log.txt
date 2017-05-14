@@ -69,3 +69,8 @@ Reach a playable state
     2. add scienceBees to javascript var game
     3. add scienceBees to game state updater
     4. Create +/- buttons next to scienceBees
+3. Create game path
+    1. Set most game objects as hidden
+    2. Create path for unlocks
+    3. create buttons for unlocks
+    4. modify html and javascript to unlock parts of game

@@ -35,43 +35,56 @@ Written by Matt
 
 	<div class="row-fluid">
 		<div id="resources_bar" class="col-md-3 col-sm-4 well">
-				<span id="resources">Resources</span>
+				<span class="title">Resources</span>
 				<br/>
 				Pollen:
 				<span id="pollen">0</span>/<span id="maxPollen">1000</span>
 				<br/>
+
+				<div hidden id="waxUnlock">
+					Wax:
+					<span id="wax">0</span>/<span id="maxWax">1000</span>
+				</div>
+
 				Honey:
 				<span id="honey">0</span>/<span id="maxHoney">1000</span>
-				<br/>
-				Science Honey:
-				<span id="scienceHoney">0</span>/<span id="maxScienceHoney">1000</span>
-				<br/>
-				Wax:
-				<span id="wax">0</span>/<span id="maxWax">1000</span>
-				<br/>
 
-				<span id="gatherers">Gatherers</span>
+				<div hidden id="scienceHoneyUnlock">
+					Science Honey:
+					<span id="scienceHoney">0</span>/<span id="maxScienceHoney">1000</span>
+				</div>
 				<br/>
-				Total Bees:
-				<span id="totalBees">0</span>/<span id="maxBees">0</span>
-				<br/>
-				Free Bees:
-				<span id="freeBees">0</span>
-				<br/>
-				Worker Bees:
-				<span id="workerBees">0</span>
-				<button onclick="removeBees('workerBees')">-1</button>
-				<button onclick="addBees('workerBees')">+1</button>
-				<br/>
-				Scientist Bees:
-				<span id="scientistBees">0</span>
-				<button onclick="removeBees('scientistBees')">-1</button>
-				<button onclick="addBees('scientistBees')">+1</button>
-				<br/>
-				<span id="structures">Structures</span>
-				<br/>
-				Honeycomb: <span id="honeycomb">0</span>
-				<br/>
+				<div hidden id="gatherersUnlock">
+					<span class="title">Gatherers</span>
+					<br/>
+					Total Bees:
+					<span id="totalBees">0</span>/<span id="maxBees">0</span>
+					<br/>
+					Free Bees:
+					<span id="freeBees">0</span>
+					<br/>
+					<div hidden id="workerBeesUnlock">
+						Worker Bees:
+						<span id="workerBees">0</span>
+						<button onclick="removeBees('workerBees')">-1</button>
+						<button onclick="addBees('workerBees')">+1</button>
+					</div>
+					<div hidden id="scientistBeesUnlock">
+						Scientist Bees:
+						<span id="scientistBees">0</span>
+						<button onclick="removeBees('scientistBees')">-1</button>
+						<button onclick="addBees('scientistBees')">+1</button>
+					</div>
+				</div>
+				<div hidden id="structuresUnlock">
+					<span class="title">Structures</span>
+					<br/>
+					Honeycomb: <span id="honeycomb">0</span>
+					<br/>
+					<div hidden id="laboratoriesUnlock">
+						Laboratories: <span id="laboratories">0</span>
+					</div>
+				</div>
 		</div>
 
 		<div id="action_bar" class="col-md-3 col-sm-4 well">
@@ -82,34 +95,48 @@ Written by Matt
 			</button>
 			<br/>
 			<button onclick="makeHoney(1)">
-				Make honey: 5 pollen
+				Make Honey: 5 pollen
 			</button>
 			<br/>
-			<button onclick="spawnBee()">
-				Spawn Bee: <span id="beesCost">2</span> honey
-			</button>
-			<br/>
-			<button onclick="makeScienceHoney(1)">
-				Make Science: 10 honey
-			</button>
-			<br/>
+			<div hidden id="spawnBeeButtonUnlock">
+				<button onclick="spawnBee()">
+					Spawn Bee: <span id="beesCost">2</span> honey
+				</button>
+				<br/>
+			</div>
+			<div hidden id="makeScienceButtonUnlock">
+				<button onclick="makeScienceHoney(1)">
+					Make Science: 10 honey
+				</button>
+				<br/>
+			</div>
 			<button onclick="refineWax(1)">
-				Refine Wax: 10 pollen
+				Refine Wax: <span id="waxCost">5</span> pollen
 			</button>
-			<br/>
-			<button onclick="constructHoneycomb()">
-				Construct honeycomb: <span id="honeycombCost">10</span> wax
-			</button>
+			<div hidden id="constructHoneycombUnlock">
+				<button onclick="constructHoneycomb()">
+					Construct Honeycomb: <span id="honeycombCost">0</span> wax
+				</button>
+			</div>
+			<div hidden id="constructLaboratoryUnlock">
+				<button onclick = "constructLaboratory()">
+					Construct Laboratory:
+					<span id="laboratoryCost">0</span> wax
+				</button>
+			</div>
 		</div>
 
-		<div id="science_bar" class="col-md-3 col-sm-4 well">
-			<span id="science">Science</span>
+		<div hidden id="science_bar" class="col-md-3 col-sm-4 well">
+			<span class="title">Science</span>
 			</br>
-			<div id="improvedFlight">
-				<button onclick="unlockImprovedFlight()">
-					Unlock Improved Flight: 5 Science Honey
-				</button>
-		</div>
+			<div hidden id="improvedFlightUnlock">
+				<div id="improvedFlight">
+					<button onclick="unlockImprovedFlight()">
+						Unlock Improved Flight: 5 Science Honey
+					</button>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
