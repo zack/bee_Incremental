@@ -1,7 +1,7 @@
 /* Written by github.com/mattclarke131 */
 
 #navbar {
-	background-color: #D0D0D0;
+	background-color: #87CEFA;
 }
 
 .title {
@@ -17,4 +17,12 @@
 #structures {
 	font-size:20px;
 	font-weight: bold;
+}
+
+.well {
+	background-color: #87CEFA
+}
+
+body {
+	background-color: #E0FFFF
 }

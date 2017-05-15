@@ -306,3 +306,11 @@ function constructLaboratory() {
 		game.unlocks.improvedFlightUnlock = true;
 	}
 }
+
+function debugUnlockAll() {
+	for (unlock in game.unlocks) {
+		if (game.unlocks.hasOwnProperty(unlock)) {
+			game.unlocks[unlock] = true;
+		}
+	}
+}

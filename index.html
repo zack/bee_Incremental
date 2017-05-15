@@ -10,11 +10,11 @@ Written by Matt
 	</head>
 
 	<body>
-	<div id="navbar">
+	<div id="navBar">
 		<div class="row">
 			<div class="col-md-2">Bee Incremental by Matt</div>
 			<div class="col-md-2">
-				<button id="saveButton" onclick="toggleSaveMenu()">Save Menu</button>
+				<button id="saveButton" class="btn btn-primary" onclick="toggleSaveMenu()">Save Menu</button>
 			</div>
 		</div>
 		<div id="time">
@@ -34,7 +34,7 @@ Written by Matt
 	</div>
 
 	<div class="row-fluid">
-		<div id="resources_bar" class="col-md-3 col-sm-4 well">
+		<div id="resourcesBar" class="col-md-3 col-sm-4 well">
 				<span class="title">Resources</span>
 				<br/>
 				Pollen:
@@ -66,14 +66,18 @@ Written by Matt
 					<div hidden id="workerBeesUnlock">
 						Worker Bees:
 						<span id="workerBees">0</span>
-						<button onclick="removeBees('workerBees')">-1</button>
-						<button onclick="addBees('workerBees')">+1</button>
+						<div class="btn-group">
+							<button class="btn btn-warning" onclick="removeBees('workerBees')">-1</button>
+							<button class="btn btn-warning" onclick="addBees('workerBees')">+1</button>
+						</div>
 					</div>
 					<div hidden id="scientistBeesUnlock">
 						Scientist Bees:
 						<span id="scientistBees">0</span>
-						<button onclick="removeBees('scientistBees')">-1</button>
-						<button onclick="addBees('scientistBees')">+1</button>
+						<div class="btn-group">
+							<button class="btn btn-warning" onclick="removeBees('scientistBees')">-1</button>
+							<button class="btn btn-warning" onclick="addBees('scientistBees')">+1</button>
+						</div>
 					</div>
 				</div>
 				<div hidden id="structuresUnlock">
@@ -87,39 +91,41 @@ Written by Matt
 				</div>
 		</div>
 
-		<div id="action_bar" class="col-md-3 col-sm-4 well">
-		<span id="actions">Actions</span>
+		<div id="actionBar" class="col-md-6 col-sm-4 well">
+			<span id="actions">Actions</span>
 			<br/>
-			<button onclick="gatherPollen(1)">
-				Gather Pollen
-			</button>
+			<div id="actionResourceButtons" class="btn-group" role="group">
+				<button class="btn btn-primary" onclick="gatherPollen(1)">
+					Gather Pollen
+				</button>
+				<button class="btn btn-primary" onclick ="makeHoney(1)">
+					Make Honey: 5 pollen
+				</button>
+				<button class="btn btn-primary" onclick="refineWax(1)">
+					Refine Wax: <span id="waxCost">5</span> pollen
+				</button>
+				<div hidden id="makeScienceButtonUnlock">
+					<button class="btn btn-primary"	onclick="makeScienceHoney(1)">
+						Make Science: 10 honey
+					</button>
+				</div>
+			</div>
 			<br/>
-			<button onclick="makeHoney(1)">
-				Make Honey: 5 pollen
-			</button>
-			<br/>
+
 			<div hidden id="spawnBeeButtonUnlock">
-				<button onclick="spawnBee()">
+				<button class="btn btn-warning" onclick="spawnBee()">
 					Spawn Bee: <span id="beesCost">2</span> honey
 				</button>
 				<br/>
 			</div>
-			<div hidden id="makeScienceButtonUnlock">
-				<button onclick="makeScienceHoney(1)">
-					Make Science: 10 honey
-				</button>
-				<br/>
-			</div>
-			<button onclick="refineWax(1)">
-				Refine Wax: <span id="waxCost">5</span> pollen
-			</button>
+
 			<div hidden id="constructHoneycombUnlock">
-				<button onclick="constructHoneycomb()">
+				<button class="btn btn-info" onclick="constructHoneycomb()">
 					Construct Honeycomb: <span id="honeycombCost">0</span> wax
 				</button>
 			</div>
 			<div hidden id="constructLaboratoryUnlock">
-				<button onclick = "constructLaboratory()">
+				<button class="btn btn-info" onclick = "constructLaboratory()">
 					Construct Laboratory:
 					<span id="laboratoryCost">0</span> wax
 				</button>
@@ -131,7 +137,7 @@ Written by Matt
 			</br>
 			<div hidden id="improvedFlightUnlock">
 				<div id="improvedFlight">
-					<button onclick="unlockImprovedFlight()">
+					<button class="btn btn-default" onclick="unlockImprovedFlight()">
 						Unlock Improved Flight: 5 Science Honey
 					</button>
 				</div>
@@ -139,6 +145,8 @@ Written by Matt
 
 		</div>
 	</div>
+
+	<button onclick="debugUnlockAll()">unlock everything</button>
 
 	<script type="text/javascript" src="main.js"></script>
 	</body>
