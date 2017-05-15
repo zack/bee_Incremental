@@ -102,7 +102,7 @@ function updateHTML() {
 
 function calculateValues() {
 	game.maxValues.maxBees = game.structures.honeycomb;
-	game.costs.beesCost = Math.floor(2+Math.pow(1.5,game.maxValues.maxBees))
+	game.costs.beesCost = Math.floor(2+Math.pow(1.5,game.beesCost))
 	game.costs.honeycombCost =
 		Math.floor(2+Math.pow(1.3,game.structures.honeycomb))
 };
