@@ -307,6 +307,7 @@ function constructLaboratory() {
 	}
 }
 
+// Debug Menu
 function debugUnlockAll() {
 	for (unlock in game.unlocks) {
 		if (game.unlocks.hasOwnProperty(unlock)) {
