@@ -4,68 +4,74 @@ main.js
 
 //Everything that is saved is stored here
 var game = {
-	time: 													0,
+  // Tab indention is fine, tab spacing doesn't work well. Don't put tabs
+  // mid-line.
+  //
+  // Also, I changed some of the names here because keys in the
+  // "cost" object, for instance, don't need to end with the word "cost."
+  // They're already in the "cost" object. It's redundant and just increases
+  // line length. This is, of course, just my opinion.
+	time: 0,
 	resources: {
-		"pollen": 										0,
-		"honey":											0,
-		"scienceHoney":								0,
-		"wax":												0,
+		"pollen":               0,
+		"honey":                0,
+		"scienceHoney":         0,
+		"wax":                  0,
 	},
 	gatherers: {
-		"totalBees":									0,
-		"freeBees":										0,
-		"workerBees":									0,
-		"scientistBees":							0,
+		"totalBees":            0,
+		"freeBees":             0,
+		"workerBees":           0,
+		"scientistBees":        0,
 	},
 	costs: {
-		"waxCost":										5,
-		"beesCost": 									2,
-		"honeycombCost":							8,
-		"laboratoryCost":							20,
-		"storageCellCost":						100,
+		"wax":                  5,
+		"bees":                 2,
+		"honeycomb":            8,
+		"laboratory":           20,
+		"storageCell":          100,
 	},
 	structures: {
-		"honeycomb": 									0,
-		"laboratories":								0,
-		"storageCell":								0,
+		"honeycomb":            0,
+		"laboratories":         0,
+		"storageCell":          0,
 	},
 	unlocks: {
 		//resources
-		"waxUnlock":									false,
-		"scienceHoneyUnlock":					false,
+		"wax":                  false,
+		"scienceHoney":         false,
 
 		//gatherers
-		"gatherersUnlock":						false,
-		"workerBeesUnlock":						false,
-		"scientistBeesUnlock":				false,
+		"gatherers":            false,
+		"workerBees":           false,
+		"scientistBees":        false,
 
 		//structures
-		"structuresUnlock":						false,
-		"laboratoriesUnlock":					false,
-		"storageCellUnlock":					false,
+		"structures":           false,
+		"laboratories":         false,
+		"storageCell":          false,
 
 		//actions
-		"spawnBeeButtonUnlock":				false,
-		"makeScienceButtonUnlock":		false,
-		"constructHoneycombUnlock":		false,
-		"constructLaboratoryUnlock":	false,
-		"constructStorageCellUnlock":	false,
+		"spawnBeeButton":       false,
+		"makeScienceButton":    false,
+		"constructHoneycomb":   false,
+		"constructLaboratory":  false,
+		"constructStorageCell": false,
 
 		//science
-		"science_bar":								false,
-		"improvedFlightUnlock":				false,
-
+		"science_bar":          false,
+		"improvedFlightUnlock": false,
 	},
 	upgrades: {
-		"improvedFlight":	false,
+		"improvedFlight":       false,
 	},
 	// maximum values for resources and gatherers
 	maxValues: {
-		"maxBees":					0,
-		"maxPollen":				1000,
-		"maxHoney":					1000,
-		"maxScienceHoney":	1000,
-		"maxWax":						1000,
+		"maxBees":              0,
+		"maxPollen":            1000,
+		"maxHoney":             1000,
+		"maxScienceHoney":      1000,
+		"maxWax":               1000,
 	},
 }
 
@@ -79,22 +85,26 @@ window.setInterval(function() {
 	document.getElementById("day").innerHTML = day;
 
 	//gatherer update
-	var workerBeesRate = game.gatherers.workerBees;
-	if (game.upgrades["improvedFlight"]) {
-		workerBeesRate *= 2;
-	}
+  // I don't like mutating things, so I'm using a ternary here.
+  var workerBeesRate = game.upgrades["improvedFlight"] ?
+    game.gatherers.workerBees * 2 :
+    game.gatherers.workerBees;
 
+  // This looks like a great place to break this out into its own function.
+  // Pass in workerBeesRate, generate a new `resources` object, and return it,
+  // replacing the existing object wholesale.
 	game.resources.pollen += 2 * workerBeesRate;
 	game.resources.wax += .5 * workerBeesRate;
 	game.resources.honey += .5 * workerBeesRate;
 
-	var scienceBeesRate = game.gatherers.scientistBees;
-	game.resources.scienceHoney += scienceBeesRate;
+  // You only use this once, so I'm removing it. This line isn't too long.
+	game.resources.scienceHoney += game.gatherers.scientistBees;
 	updateHTML();
-}, 500);
+}, 5, so I'm using a ternary here.0);
 
 // updateHTML() adjusts the html to reflect the game state.
 function updateHTML() {
+  // cool
 	calculateValues();
 	updateResourcesHTML();
 	updateGatherersHTML();
@@ -106,13 +116,14 @@ function updateHTML() {
 };
 
 function calculateValues() {
-	game.maxValues.maxBees = game.structures.honeycomb;
+  game.maxValues.maxBees = game.structures.honeycomb; // Huh?
 	game.costs.beesCost = Math.floor(2+Math.pow(1.5,game.gatherers.totalBees))
 	game.costs.honeycombCost =
 		Math.floor(2+Math.pow(1.3,game.structures.honeycomb));
 	game.costs.storageCellCost =
 		Math.floor(100+Math.pow(1.01,game.structures.storageCell));
 
+  // Another prime suspect for extraction to its own function, perhaps
 	game.maxValues.maxPollen = 200+1000*game.structures.storageCell;
 	game.maxValues.maxWax = 200+1000*game.structures.storageCell;
 	game.maxValues.maxHoney = 200+1000*game.structures.storageCell;
@@ -138,7 +149,10 @@ function updateResourcesHTML() {
 function updateGatherersHTML() {
 	for (var gatherer in game.gatherers) {
 		if (game.gatherers.hasOwnProperty(gatherer)) {
-			try {
+      // You shouldn't need this, but props for ingenuity.
+      // Not sure why this would fail, but perhaps you can just check if
+      // document.getElementById(gatherer) returns a value?
+      try {
 				document.getElementById(gatherer).innerHTML = game.gatherers[gatherer];
 			}
 			catch (e) {
@@ -184,6 +198,10 @@ function updateUpgradesHTML() {
 
 function updateUnlocksHTML() {
 	for (var unlock in game.unlocks) {
+    // Maybe:
+    // var currStatus = document.getElementById(unlock).getAttribute("hidden");
+    // document.getElementById(unlock).setAttribute(!currStatus);
+    // Or something idk
 		if(game.unlocks[unlock]) {
 			document.getElementById(unlock).removeAttribute("hidden");
 		} else {
@@ -195,6 +213,7 @@ function updateUnlocksHTML() {
 // Save feature
 var toggleSaveMenu= function() {
 	var saveDiv = document.getElementById("save");
+  // Same below as above
 	if (saveDiv.hasAttribute("hidden")) {
 		saveDiv.removeAttribute("hidden");
 	} else {
@@ -216,6 +235,7 @@ var localLoad = function() {
 
 var deleteSave = function(){
 	confirmed = confirm(
+    // Savage
 		"Are you sure you want to kill all these poor poor bees, you monster?"
 	);
 	if (confirmed) {
