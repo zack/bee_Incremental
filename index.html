@@ -83,10 +83,14 @@ Written by Matt
 				<div hidden id="structuresUnlock">
 					<span class="title">Structures</span>
 					<br/>
-					Honeycomb: <span id="honeycomb">0</span>
+						Honeycomb: <span id="honeycomb">0</span>
 					<br/>
 					<div hidden id="laboratoriesUnlock">
 						Laboratories: <span id="laboratories">0</span>
+					</div>
+					<br/>
+					<div hidden id="storageCellUnlock">
+						StorageCell: <span id="storageCell">0</span>
 					</div>
 				</div>
 		</div>
@@ -128,6 +132,12 @@ Written by Matt
 				<button class="btn btn-info" onclick = "constructLaboratory()">
 					Construct Laboratory:
 					<span id="laboratoryCost">0</span> wax
+				</button>
+			</div>
+			<div hidden id="constructStorageCellUnlock">
+				<button class="btn btn-info" onclick = "constructStorageCell()">
+					Construct Storage Cell:
+					<span id="storageCellCost">0</span> wax
 				</button>
 			</div>
 		</div>
